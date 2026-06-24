@@ -43,7 +43,7 @@ Gunakan akun berikut untuk masuk ke dalam sistem setelah melakukan seeding datab
 
 Unduh file SQL database langsung untuk impor manual:
 
-- **[database.sql](database.sql)** (Berisi struktur tabel dan data sampel).
+- **[Download file database.zip](database.zip)** (Berisi struktur tabel dan data sampel).
 
 ---
 
