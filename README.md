@@ -53,7 +53,7 @@ Unduh file SQL database langsung untuk impor manual:
 
     ```bash
     git clone <repository_url>
-    cd assignment-test
+    cd assignment-asietex
     ```
 
 2. **Install Dependency PHP**
