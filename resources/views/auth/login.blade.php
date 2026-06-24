@@ -11,10 +11,10 @@
         </div>
     </div>
     <h2 class="mt-6 text-center text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-        Masuk ke akun Anda
+        {{ __('Masuk ke akun Anda') }}
     </h2>
     <p class="mt-2 text-center text-sm text-slate-500 dark:text-slate-400">
-        Sistem Inventori Bahan Baku Tekstil
+        {{ __('Sistem Inventori Bahan Baku Tekstil') }}
     </p>
 </div>
 
@@ -26,7 +26,7 @@
             <!-- Email Field -->
             <div>
                 <label for="email" class="block text-sm font-semibold text-slate-700 dark:text-slate-300">
-                    Alamat Email
+                    {{ __('Alamat Email') }}
                 </label>
                 <div class="mt-1 relative">
                     <input id="email" name="email" type="email" autocomplete="email" required value="{{ old('email') }}"
@@ -48,7 +48,7 @@
             <!-- Password Field -->
             <div>
                 <label for="password" class="block text-sm font-semibold text-slate-700 dark:text-slate-300">
-                    Kata Sandi
+                    {{ __('Kata Sandi') }}
                 </label>
                 <div class="mt-1 relative">
                     <input id="password" name="password" type="password" autocomplete="current-password" required
@@ -73,7 +73,7 @@
                     <input id="remember" name="remember" type="checkbox"
                            class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-slate-300 dark:border-slate-800 bg-white dark:bg-slate-950 rounded transition-all duration-200">
                     <label for="remember" class="ml-2 block text-sm text-slate-500 dark:text-slate-400 font-medium select-none">
-                        Ingat saya
+                        {{ __('Ingat saya') }}
                     </label>
                 </div>
             </div>
@@ -82,7 +82,7 @@
             <div>
                 <button type="submit"
                         class="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-lg text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-200 shadow-indigo-600/20 cursor-pointer">
-                    Masuk
+                    {{ __('Masuk') }}
                 </button>
             </div>
         </form>

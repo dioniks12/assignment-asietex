@@ -12,6 +12,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <!-- Anti-FOUC script for Theme Toggle -->
     <script>
         if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -79,7 +82,7 @@
                             <div>
                                 <h4 class="text-sm font-semibold text-slate-800 dark:text-slate-200">{{ auth()->user()->name }}</h4>
                                 <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium {{ auth()->user()->role === 'manajer' ? 'bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20' : 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20' }}">
-                                    {{ auth()->user()->role === 'manajer' ? 'Manajer' : 'Admin Gudang' }}
+                                    {{ auth()->user()->role === 'manajer' ? __('Manager') : __('Warehouse Admin') }}
                                 </span>
                             </div>
                         </div>
@@ -92,11 +95,11 @@
                             <svg class="mr-3 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
                             </svg>
-                            Dasbor
+                            {{ __('Dashboard') }}
                         </a>
 
                         <div class="pt-4 pb-2">
-                            <span class="px-4 text-xs font-semibold tracking-wider text-slate-400 dark:text-slate-500 uppercase">Data Master</span>
+                            <span class="px-4 text-xs font-semibold tracking-wider text-slate-400 dark:text-slate-500 uppercase">{{ __('Data Master') }}</span>
                         </div>
 
                         <a href="{{ route('categories.index') }}" 
@@ -104,7 +107,7 @@
                             <svg class="mr-3 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/>
                             </svg>
-                            Kategori Bahan
+                            {{ __('Material Categories') }}
                         </a>
 
                         <a href="{{ route('suppliers.index') }}" 
@@ -112,7 +115,7 @@
                             <svg class="mr-3 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
                             </svg>
-                            Pemasok / Supplier
+                            {{ __('Suppliers') }}
                         </a>
 
                         <a href="{{ route('products.index') }}" 
@@ -120,11 +123,11 @@
                             <svg class="mr-3 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
                             </svg>
-                            Produk Bahan Baku
+                            {{ __('Raw Material Products') }}
                         </a>
 
                         <div class="pt-4 pb-2">
-                            <span class="px-4 text-xs font-semibold tracking-wider text-slate-400 dark:text-slate-500 uppercase">Transaksi</span>
+                            <span class="px-4 text-xs font-semibold tracking-wider text-slate-400 dark:text-slate-500 uppercase">{{ __('Transactions') }}</span>
                         </div>
 
                         <a href="{{ route('transactions.index') }}" 
@@ -132,19 +135,19 @@
                             <svg class="mr-3 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
                             </svg>
-                            Log Mutasi Stok
+                            {{ __('Stock Mutation Logs') }}
                         </a>
                     </nav>
 
                     <!-- Logout Button -->
                     <div class="p-4 border-t border-slate-200 dark:border-slate-800 bg-slate-200/20 dark:bg-slate-950">
-                        <form method="POST" action="{{ route('logout') }}" onsubmit="return confirm('Apakah Anda yakin ingin keluar dari sistem?');">
+                        <form method="POST" action="{{ route('logout') }}" data-confirm="{{ __('Are you sure you want to log out of the system?') }}">
                             @csrf
                             <button type="submit" class="w-full flex items-center justify-center px-4 py-2.5 text-sm font-medium text-rose-600 dark:text-rose-400 bg-rose-500/10 hover:bg-rose-500/20 border border-rose-200 dark:border-rose-500/20 rounded-xl transition-all duration-200 cursor-pointer">
                                 <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
                                 </svg>
-                                Keluar
+                                {{ __('Logout') }}
                             </button>
                         </form>
                     </div>
@@ -161,13 +164,21 @@
                             <h2 class="text-lg font-bold text-slate-800 dark:text-slate-100">@yield('page_title', 'Dashboard')</h2>
                         </div>
                         
-                        <!-- Header Utilities (Real-time Clock & Dark Mode Toggle) -->
+                        <!-- Header Utilities (Real-time Clock, Language Switcher & Dark Mode Toggle) -->
                         <div class="flex items-center space-x-3">
+                            <!-- Language Switcher Button -->
+                            <a href="{{ app()->getLocale() === 'id' ? route('lang.switch', 'en') : route('lang.switch', 'id') }}" 
+                               class="inline-flex items-center space-x-1.5 px-3.5 py-2 text-xs font-semibold text-slate-600 dark:text-slate-400 bg-slate-200/50 dark:bg-slate-950 border border-slate-300/60 dark:border-slate-800 rounded-xl hover:bg-slate-200/80 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-150 transition duration-200 cursor-pointer shadow-sm"
+                               title="{{ app()->getLocale() === 'id' ? 'Switch to English' : 'Ubah ke Bahasa Indonesia' }}">
+                                <span>🌐</span>
+                                <span>{{ app()->getLocale() === 'id' ? 'EN' : 'ID' }}</span>
+                            </a>
+
                             <span id="live-clock" class="text-xs text-slate-600 dark:text-slate-400 font-semibold bg-slate-200/50 dark:bg-slate-950 border border-slate-300/60 dark:border-slate-800 px-3.5 py-2 rounded-xl transition duration-200">
                                 {{ now()->format('d-m H:i') }}
                             </span>
                             
-                            <button id="theme-toggle" class="p-2 text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 bg-slate-200/50 dark:bg-slate-950 border border-slate-300/60 dark:border-slate-800 rounded-xl transition duration-200 cursor-pointer" aria-label="Ganti Tema">
+                            <button id="theme-toggle" class="p-2 text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 bg-slate-200/50 dark:bg-slate-950 border border-slate-300/60 dark:border-slate-800 rounded-xl transition duration-200 cursor-pointer" aria-label="{{ __('Ganti Tema') }}">
                                 <!-- Moon Icon (visible in light mode) -->
                                 <svg id="theme-toggle-dark-icon" class="hidden h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
@@ -280,6 +291,163 @@
         updateClock();
     </script>
     @endauth
+
+    <!-- SweetAlert2 CRUD Notifications and Deletion Confirmation -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const isDark = document.documentElement.classList.contains('dark');
+            const swalBg = isDark ? '#0f172a' : '#ffffff';
+            const swalColor = isDark ? '#f1f5f9' : '#0f172a';
+
+            // SweetAlert Form Submission Confirmation
+            document.querySelectorAll('form[data-confirm]').forEach(form => {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const message = this.getAttribute('data-confirm');
+                    
+                    // Determine if this is a deletion form (danger/rose color)
+                    const isDelete = this.classList.contains('delete-form') || 
+                                     this.action.includes('/destroy') || 
+                                     this.querySelector('input[name="_method"]')?.value === 'DELETE';
+                    const confirmColor = isDelete ? '#ef4444' : '#4f46e5';
+                    const confirmText = isDelete ? "{{ __('Delete') }}" : "{{ __('Yes, Proceed!') }}";
+                    const title = isDelete ? "{{ __('Confirm Delete') }}" : "{{ __('Confirm Action') }}";
+                    const icon = isDelete ? 'warning' : 'question';
+
+                    Swal.fire({
+                        title: title,
+                        text: message,
+                        icon: icon,
+                        showCancelButton: true,
+                        confirmButtonColor: confirmColor,
+                        cancelButtonColor: '#64748b',
+                        confirmButtonText: confirmText,
+                        cancelButtonText: "{{ __('Cancel') }}",
+                        background: swalBg,
+                        color: swalColor
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            this.submit();
+                        }
+                    });
+                });
+            });
+
+            // SweetAlert Success Flash Messages
+            @if(session('success'))
+                Swal.fire({
+                    title: "{{ __('Success!') }}",
+                    text: "{{ session('success') }}",
+                    icon: 'success',
+                    confirmButtonColor: '#4f46e5',
+                    background: swalBg,
+                    color: swalColor
+                });
+            @endif
+
+            // SweetAlert Error Flash Messages
+            @if(session('error'))
+                Swal.fire({
+                    title: "{{ __('Error!') }}",
+                    text: "{{ session('error') }}",
+                    icon: 'error',
+                    confirmButtonColor: '#ef4444',
+                    background: swalBg,
+                    color: swalColor
+                });
+            @endif
+
+            // Lazy Loading tables
+            document.querySelectorAll('table[data-lazy-load="true"]').forEach(table => {
+                const tbody = table.querySelector('tbody');
+                if (!tbody) return;
+                
+                const rows = Array.from(tbody.querySelectorAll('tr'));
+                const chunkSize = parseInt(table.getAttribute('data-lazy-chunk')) || 5;
+                let visibleCount = chunkSize;
+                
+                // Hide all rows initially except the first chunk
+                rows.forEach((row, idx) => {
+                    if (idx >= visibleCount) {
+                        row.style.display = 'none';
+                    }
+                });
+                
+                // Find parent overflow container of table or fallback to window
+                let scrollContainer = window;
+                let parent = table.parentElement;
+                while (parent) {
+                    const style = window.getComputedStyle(parent);
+                    if (style.overflowY === 'auto' || style.overflowY === 'scroll') {
+                        scrollContainer = parent;
+                        break;
+                    }
+                    parent = parent.parentElement;
+                }
+
+                // Create loader indicator if there are more rows than the first chunk
+                if (rows.length > chunkSize) {
+                    const wrapper = table.parentElement;
+                    const loader = document.createElement('div');
+                    loader.className = 'py-4 text-center text-xs text-slate-500 font-semibold flex items-center justify-center space-x-2 border-t border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/30';
+                    loader.innerHTML = `
+                        <svg class="animate-spin h-4 w-4 text-indigo-600 dark:text-indigo-400" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        <span>{{ __('Loading more items...') }}</span>
+                    `;
+                    wrapper.appendChild(loader);
+
+                    const updateLoader = () => {
+                        if (visibleCount >= rows.length) {
+                            loader.style.display = 'none';
+                        } else {
+                            loader.style.display = 'flex';
+                        }
+                    };
+
+                    updateLoader();
+
+                    let isDelaying = false;
+                    const loadMore = () => {
+                        if (visibleCount >= rows.length || isDelaying) return;
+
+                        let scrollHeight, scrollTop, clientHeight;
+                        if (scrollContainer === window) {
+                            scrollHeight = document.documentElement.scrollHeight;
+                            scrollTop = window.scrollY || document.documentElement.scrollTop;
+                            clientHeight = window.innerHeight;
+                        } else {
+                            scrollHeight = scrollContainer.scrollHeight;
+                            scrollTop = scrollContainer.scrollTop;
+                            clientHeight = scrollContainer.clientHeight;
+                        }
+
+                        // Trigger when within 40px of bottom
+                        if (scrollHeight - scrollTop - clientHeight < 40) {
+                            isDelaying = true;
+                            loader.querySelector('span').textContent = "{{ __('Loading...') }}";
+                            setTimeout(() => {
+                                const nextCount = visibleCount + chunkSize;
+                                rows.forEach((row, idx) => {
+                                    if (idx >= visibleCount && idx < nextCount) {
+                                        row.style.display = '';
+                                    }
+                                });
+                                visibleCount = nextCount;
+                                updateLoader();
+                                loader.querySelector('span').textContent = "{{ __('Loading more items...') }}";
+                                isDelaying = false;
+                            }, 400); // 400ms delay for simulation
+                        }
+                    };
+
+                    scrollContainer.addEventListener('scroll', loadMore);
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>

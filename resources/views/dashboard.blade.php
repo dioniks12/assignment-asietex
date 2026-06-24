@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('page_title', 'Ringkasan Dasbor')
+@section('page_title', __('Ringkasan Dasbor'))
 
 @section('content')
 <div class="space-y-8">
@@ -14,11 +14,11 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
                 </svg>
             </div>
-            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Total Produk</p>
+            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">{{ __('Total Produk') }}</p>
             <h3 class="mt-2 text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">{{ $totalProducts }}</h3>
             <div class="mt-4 flex items-center text-xs text-indigo-600 dark:text-indigo-400 font-medium">
                 <a href="{{ route('products.index') }}" class="hover:underline flex items-center">
-                    Lihat daftar
+                    {{ __('Lihat daftar') }}
                     <svg class="ml-1 h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                     </svg>
@@ -33,13 +33,13 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
                 </svg>
             </div>
-            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Peringatan Stok</p>
+            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">{{ __('Peringatan Stok') }}</p>
             <h3 class="mt-2 text-3xl font-extrabold tracking-tight {{ $lowStockAlerts->count() > 0 ? 'text-amber-600 dark:text-amber-400' : 'text-slate-900 dark:text-slate-300' }}">
                 {{ $lowStockAlerts->count() }}
             </h3>
             <div class="mt-4 flex items-center text-xs font-medium">
                 <span class="{{ $lowStockAlerts->count() > 0 ? 'text-amber-600 dark:text-amber-400/80' : 'text-slate-500' }}">
-                    Batas minimum: &lt; {{ $lowStockThreshold }} unit
+                    {{ __('Batas minimum:') }} &lt; {{ $lowStockThreshold }} {{ __('unit') }}
                 </span>
             </div>
         </div>
@@ -51,11 +51,11 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/>
                 </svg>
             </div>
-            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Kategori</p>
+            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">{{ __('Kategori') }}</p>
             <h3 class="mt-2 text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">{{ $totalCategories }}</h3>
             <div class="mt-4 flex items-center text-xs text-indigo-600 dark:text-indigo-400 font-medium">
                 <a href="{{ route('categories.index') }}" class="hover:underline flex items-center">
-                    Lihat kategori
+                    {{ __('Lihat kategori') }}
                     <svg class="ml-1 h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                     </svg>
@@ -70,11 +70,11 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
                 </svg>
             </div>
-            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Pemasok Aktif</p>
+            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">{{ __('Pemasok Aktif') }}</p>
             <h3 class="mt-2 text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">{{ $totalSuppliers }}</h3>
             <div class="mt-4 flex items-center text-xs text-indigo-600 dark:text-indigo-400 font-medium">
                 <a href="{{ route('suppliers.index') }}" class="hover:underline flex items-center">
-                    Lihat pemasok
+                    {{ __('Lihat pemasok') }}
                     <svg class="ml-1 h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                     </svg>
@@ -92,9 +92,9 @@
             <!-- Recent Transactions Card -->
             <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl shadow-md dark:shadow-xl overflow-hidden">
                 <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center bg-slate-50/50 dark:bg-slate-950/40">
-                    <h3 class="text-base font-bold text-slate-900 dark:text-white">Transaksi Terakhir</h3>
+                    <h3 class="text-base font-bold text-slate-900 dark:text-white">{{ __('Transaksi Terakhir') }}</h3>
                     <a href="{{ route('transactions.index') }}" class="text-xs text-indigo-600 dark:text-indigo-400 hover:underline font-semibold flex items-center">
-                        Semua log mutasi
+                        {{ __('Semua log mutasi') }}
                         <svg class="ml-1 h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                         </svg>
@@ -103,16 +103,16 @@
                 <div class="divide-y divide-slate-200 dark:divide-slate-800 overflow-x-auto">
                     @if($recentTransactions->isEmpty())
                         <div class="p-6 text-center text-sm text-slate-500">
-                            Belum ada transaksi yang dicatat.
+                            {{ __('Belum ada transaksi yang dicatat.') }}
                         </div>
                     @else
                         <table class="w-full text-left text-sm text-slate-600 dark:text-slate-300">
                             <thead class="text-xs uppercase bg-slate-100/55 dark:bg-slate-950/20 text-slate-500 dark:text-slate-400 border-b border-slate-200 dark:border-slate-800">
                                 <tr>
-                                    <th class="px-6 py-3 font-semibold">Tanggal</th>
-                                    <th class="px-6 py-3 font-semibold">Produk</th>
-                                    <th class="px-6 py-3 font-semibold">Tipe</th>
-                                    <th class="px-6 py-3 font-semibold text-right">Jumlah</th>
+                                    <th class="px-6 py-3 font-semibold">{{ __('Tanggal') }}</th>
+                                    <th class="px-6 py-3 font-semibold">{{ __('Produk') }}</th>
+                                    <th class="px-6 py-3 font-semibold">{{ __('Tipe') }}</th>
+                                    <th class="px-6 py-3 font-semibold text-right">{{ __('Jumlah') }}</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-slate-250 dark:divide-slate-800 bg-white/10 dark:bg-slate-900/30">
@@ -132,7 +132,7 @@
                                                 {{ $transaction->type === 'out' ? 'bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20' : '' }}
                                                 {{ $transaction->type === 'return' ? 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20' : '' }}
                                             ">
-                                                {{ $transaction->type === 'in' ? 'MASUK' : ($transaction->type === 'out' ? 'KELUAR' : 'RETUR') }}
+                                                {{ $transaction->type === 'in' ? __('MASUK') : ($transaction->type === 'out' ? __('KELUAR') : __('RETUR')) }}
                                             </span>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-right font-bold {{ $transaction->type === 'in' ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400' }}">
@@ -156,7 +156,7 @@
                         <svg class="mr-2 h-5 w-5 text-amber-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
                         </svg>
-                        Stok Menipis
+                        {{ __('Stok Menipis') }}
                     </h3>
                 </div>
                 <div class="p-6 flex-1 overflow-y-auto space-y-4">
@@ -165,7 +165,7 @@
                             <svg class="h-8 w-8 text-slate-400 dark:text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                             </svg>
-                            <span>Semua produk memiliki stok yang cukup.</span>
+                            <span>{{ __('Semua produk memiliki stok yang cukup.') }}</span>
                         </div>
                     @else
                         @foreach($lowStockAlerts as $item)
@@ -180,7 +180,7 @@
                                 </div>
                                 <div class="text-right">
                                     <span class="inline-flex px-2.5 py-1 rounded-lg text-xs font-bold bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20">
-                                        {{ $item->current_stock }} tersisa
+                                        {{ $item->current_stock }} {{ __('tersisa') }}
                                     </span>
                                 </div>
                             </div>
@@ -191,7 +191,7 @@
                 @if(auth()->user()->role === 'admin_gudang')
                     <div class="p-4 border-t border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/40">
                         <a href="{{ route('transactions.create') }}" class="w-full flex items-center justify-center px-4 py-2.5 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-500 rounded-xl transition duration-200 shadow-lg shadow-indigo-600/10">
-                            Catat Barang Masuk / Restock
+                            {{ __('Catat Barang Masuk / Restock') }}
                         </a>
                     </div>
                 @endif

@@ -7,6 +7,14 @@ use App\Http\Controllers\AuthController;
 // Redirect root to dashboard
 Route::redirect('/', '/dashboard');
 
+// Locale Switcher Route
+Route::get('/lang/{locale}', function (string $locale) {
+    if (in_array($locale, ['en', 'id'])) {
+        session()->put('locale', $locale);
+    }
+    return redirect()->back();
+})->name('lang.switch');
+
 // Auth Routes
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');

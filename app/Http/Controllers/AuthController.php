@@ -27,9 +27,9 @@ class AuthController extends Controller
             'email' => ['required', 'email'],
             'password' => ['required'],
         ], [
-            'email.required' => 'Alamat email wajib diisi.',
-            'email.email' => 'Format alamat email tidak valid.',
-            'password.required' => 'Kata sandi wajib diisi.',
+            'email.required' => __('Alamat email wajib diisi.'),
+            'email.email' => __('Format alamat email tidak valid.'),
+            'password.required' => __('Kata sandi wajib diisi.'),
         ]);
 
         if (Auth::attempt($credentials, $request->boolean('remember'))) {
@@ -38,7 +38,7 @@ class AuthController extends Controller
         }
 
         return back()->withErrors([
-            'email' => 'Kredensial yang diberikan tidak cocok dengan data kami.',
+            'email' => __('Kredensial yang diberikan tidak cocok dengan data kami.'),
         ])->onlyInput('email');
     }
 

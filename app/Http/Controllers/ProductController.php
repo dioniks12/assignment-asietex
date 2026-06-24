@@ -72,23 +72,23 @@ class ProductController extends Controller
             'unit' => ['required', 'string', 'max:255'],
             'current_stock' => ['nullable', 'integer', 'min:0'],
         ], [
-            'category_id.required' => 'Kategori wajib dipilih.',
-            'category_id.exists' => 'Kategori tidak valid.',
-            'name.required' => 'Nama produk wajib diisi.',
-            'name.max' => 'Nama produk tidak boleh lebih dari 255 karakter.',
-            'color.required' => 'Warna wajib diisi.',
-            'color.max' => 'Warna tidak boleh lebih dari 255 karakter.',
-            'unit.required' => 'Satuan wajib diisi.',
-            'unit.max' => 'Satuan tidak boleh lebih dari 255 karakter.',
-            'current_stock.integer' => 'Stok awal harus berupa angka.',
-            'current_stock.min' => 'Stok awal tidak boleh kurang dari 0.',
+            'category_id.required' => __('Kategori wajib dipilih.'),
+            'category_id.exists' => __('Kategori tidak valid.'),
+            'name.required' => __('Nama produk wajib diisi.'),
+            'name.max' => __('Nama produk tidak boleh lebih dari 255 karakter.'),
+            'color.required' => __('Warna wajib diisi.'),
+            'color.max' => __('Warna tidak boleh lebih dari 255 karakter.'),
+            'unit.required' => __('Satuan wajib diisi.'),
+            'unit.max' => __('Satuan tidak boleh lebih dari 255 karakter.'),
+            'current_stock.integer' => __('Stok awal harus berupa angka.'),
+            'current_stock.min' => __('Stok awal tidak boleh kurang dari 0.'),
         ]);
 
         $validated['current_stock'] = $validated['current_stock'] ?? 0;
 
         Product::create($validated);
 
-        return redirect()->route('products.index')->with('success', 'Produk berhasil ditambahkan.');
+        return redirect()->route('products.index')->with('success', __('Produk berhasil ditambahkan.'));
     }
 
     /**
@@ -121,22 +121,22 @@ class ProductController extends Controller
             'unit' => ['required', 'string', 'max:255'],
             'current_stock' => ['required', 'integer', 'min:0'],
         ], [
-            'category_id.required' => 'Kategori wajib dipilih.',
-            'category_id.exists' => 'Kategori tidak valid.',
-            'name.required' => 'Nama produk wajib diisi.',
-            'name.max' => 'Nama produk tidak boleh lebih dari 255 karakter.',
-            'color.required' => 'Warna wajib diisi.',
-            'color.max' => 'Warna tidak boleh lebih dari 255 karakter.',
-            'unit.required' => 'Satuan wajib diisi.',
-            'unit.max' => 'Satuan tidak boleh lebih dari 255 karakter.',
-            'current_stock.required' => 'Stok saat ini wajib diisi.',
-            'current_stock.integer' => 'Stok saat ini harus berupa angka.',
-            'current_stock.min' => 'Stok saat ini tidak boleh kurang dari 0.',
+            'category_id.required' => __('Kategori wajib dipilih.'),
+            'category_id.exists' => __('Kategori tidak valid.'),
+            'name.required' => __('Nama produk wajib diisi.'),
+            'name.max' => __('Nama produk tidak boleh lebih dari 255 karakter.'),
+            'color.required' => __('Warna wajib diisi.'),
+            'color.max' => __('Warna tidak boleh lebih dari 255 karakter.'),
+            'unit.required' => __('Satuan wajib diisi.'),
+            'unit.max' => __('Satuan tidak boleh lebih dari 255 karakter.'),
+            'current_stock.required' => __('Stok saat ini wajib diisi.'),
+            'current_stock.integer' => __('Stok saat ini harus berupa angka.'),
+            'current_stock.min' => __('Stok saat ini tidak boleh kurang dari 0.'),
         ]);
 
         $product->update($validated);
 
-        return redirect()->route('products.index')->with('success', 'Produk berhasil diubah.');
+        return redirect()->route('products.index')->with('success', __('Produk berhasil diubah.'));
     }
 
     /**
@@ -146,6 +146,6 @@ class ProductController extends Controller
     {
         $product->delete();
 
-        return redirect()->route('products.index')->with('success', 'Produk berhasil dihapus.');
+        return redirect()->route('products.index')->with('success', __('Produk berhasil dihapus.'));
     }
 }

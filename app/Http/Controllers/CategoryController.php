@@ -51,14 +51,14 @@ class CategoryController extends Controller
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255', 'unique:categories,name'],
         ], [
-            'name.required' => 'Nama kategori wajib diisi.',
-            'name.unique' => 'Nama kategori sudah digunakan.',
-            'name.max' => 'Nama kategori tidak boleh lebih dari 255 karakter.',
+            'name.required' => __('Nama kategori wajib diisi.'),
+            'name.unique' => __('Nama kategori sudah digunakan.'),
+            'name.max' => __('Nama kategori tidak boleh lebih dari 255 karakter.'),
         ]);
 
         Category::create($validated);
 
-        return redirect()->route('categories.index')->with('success', 'Kategori berhasil ditambahkan.');
+        return redirect()->route('categories.index')->with('success', __('Kategori berhasil ditambahkan.'));
     }
 
     /**
@@ -86,14 +86,14 @@ class CategoryController extends Controller
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255', 'unique:categories,name,' . $category->id],
         ], [
-            'name.required' => 'Nama kategori wajib diisi.',
-            'name.unique' => 'Nama kategori sudah digunakan.',
-            'name.max' => 'Nama kategori tidak boleh lebih dari 255 karakter.',
+            'name.required' => __('Nama kategori wajib diisi.'),
+            'name.unique' => __('Nama kategori sudah digunakan.'),
+            'name.max' => __('Nama kategori tidak boleh lebih dari 255 karakter.'),
         ]);
 
         $category->update($validated);
 
-        return redirect()->route('categories.index')->with('success', 'Kategori berhasil diubah.');
+        return redirect()->route('categories.index')->with('success', __('Kategori berhasil diubah.'));
     }
 
     /**
@@ -103,6 +103,6 @@ class CategoryController extends Controller
     {
         $category->delete();
 
-        return redirect()->route('categories.index')->with('success', 'Kategori berhasil dihapus.');
+        return redirect()->route('categories.index')->with('success', __('Kategori berhasil dihapus.'));
     }
 }

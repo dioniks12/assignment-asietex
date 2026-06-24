@@ -57,16 +57,16 @@ class SupplierController extends Controller
             'contact' => ['required', 'string', 'max:255'],
             'address' => ['required', 'string'],
         ], [
-            'name.required' => 'Nama pemasok wajib diisi.',
-            'name.max' => 'Nama pemasok tidak boleh lebih dari 255 karakter.',
-            'contact.required' => 'Kontak pemasok wajib diisi.',
-            'contact.max' => 'Kontak pemasok tidak boleh lebih dari 255 karakter.',
-            'address.required' => 'Alamat pemasok wajib diisi.',
+            'name.required' => __('Nama pemasok wajib diisi.'),
+            'name.max' => __('Nama pemasok tidak boleh lebih dari 255 karakter.'),
+            'contact.required' => __('Kontak pemasok wajib diisi.'),
+            'contact.max' => __('Kontak pemasok tidak boleh lebih dari 255 karakter.'),
+            'address.required' => __('Alamat pemasok wajib diisi.'),
         ]);
 
         Supplier::create($validated);
 
-        return redirect()->route('suppliers.index')->with('success', 'Pemasok berhasil ditambahkan.');
+        return redirect()->route('suppliers.index')->with('success', __('Pemasok berhasil ditambahkan.'));
     }
 
     /**
@@ -96,16 +96,16 @@ class SupplierController extends Controller
             'contact' => ['required', 'string', 'max:255'],
             'address' => ['required', 'string'],
         ], [
-            'name.required' => 'Nama pemasok wajib diisi.',
-            'name.max' => 'Nama pemasok tidak boleh lebih dari 255 karakter.',
-            'contact.required' => 'Kontak pemasok wajib diisi.',
-            'contact.max' => 'Kontak pemasok tidak boleh lebih dari 255 karakter.',
-            'address.required' => 'Alamat pemasok wajib diisi.',
+            'name.required' => __('Nama pemasok wajib diisi.'),
+            'name.max' => __('Nama pemasok tidak boleh lebih dari 255 karakter.'),
+            'contact.required' => __('Kontak pemasok wajib diisi.'),
+            'contact.max' => __('Kontak pemasok tidak boleh lebih dari 255 karakter.'),
+            'address.required' => __('Alamat pemasok wajib diisi.'),
         ]);
 
         $supplier->update($validated);
 
-        return redirect()->route('suppliers.index')->with('success', 'Pemasok berhasil diubah.');
+        return redirect()->route('suppliers.index')->with('success', __('Pemasok berhasil diubah.'));
     }
 
     /**
@@ -115,6 +115,6 @@ class SupplierController extends Controller
     {
         $supplier->delete();
 
-        return redirect()->route('suppliers.index')->with('success', 'Pemasok berhasil dihapus.');
+        return redirect()->route('suppliers.index')->with('success', __('Pemasok berhasil dihapus.'));
     }
 }

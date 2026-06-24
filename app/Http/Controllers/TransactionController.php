@@ -83,17 +83,17 @@ class TransactionController extends Controller
             'transaction_date' => ['required', 'date'],
             'notes' => ['nullable', 'string'],
         ], [
-            'type.required' => 'Tipe transaksi wajib dipilih.',
-            'type.in' => 'Tipe transaksi tidak valid.',
-            'product_id.required' => 'Produk wajib dipilih.',
-            'product_id.exists' => 'Produk tidak valid.',
-            'supplier_id.required_if' => 'Pemasok wajib dipilih untuk transaksi Masuk (IN) atau Retur (RETURN).',
-            'supplier_id.exists' => 'Pemasok tidak valid.',
-            'quantity.required' => 'Jumlah wajib diisi.',
-            'quantity.integer' => 'Jumlah harus berupa angka.',
-            'quantity.min' => 'Jumlah minimal adalah 1.',
-            'transaction_date.required' => 'Tanggal transaksi wajib diisi.',
-            'transaction_date.date' => 'Format tanggal transaksi tidak valid.',
+            'type.required' => __('Tipe transaksi wajib dipilih.'),
+            'type.in' => __('Tipe transaksi tidak valid.'),
+            'product_id.required' => __('Produk wajib dipilih.'),
+            'product_id.exists' => __('Produk tidak valid.'),
+            'supplier_id.required_if' => __('Pemasok wajib dipilih untuk transaksi Masuk (IN) atau Retur (RETURN).'),
+            'supplier_id.exists' => __('Pemasok tidak valid.'),
+            'quantity.required' => __('Jumlah wajib diisi.'),
+            'quantity.integer' => __('Jumlah harus berupa angka.'),
+            'quantity.min' => __('Jumlah minimal adalah 1.'),
+            'transaction_date.required' => __('Tanggal transaksi wajib diisi.'),
+            'transaction_date.date' => __('Format tanggal transaksi tidak valid.'),
         ]);
 
         $product = Product::findOrFail($validated['product_id']);
@@ -102,7 +102,10 @@ class TransactionController extends Controller
         if (in_array($validated['type'], ['out', 'return'])) {
             if ($product->current_stock < $validated['quantity']) {
                 return back()->withErrors([
-                    'quantity' => "Stok tidak mencukupi. Stok saat ini untuk produk ini adalah {$product->current_stock} {$product->unit}.",
+                    'quantity' => __('Stok tidak mencukupi. Stok saat ini untuk produk ini adalah :stock :unit.', [
+                        'stock' => $product->current_stock,
+                        'unit' => $product->unit
+                    ]),
                 ])->withInput();
             }
         }
@@ -121,7 +124,7 @@ class TransactionController extends Controller
             $product->save();
         });
 
-        return redirect()->route('transactions.index')->with('success', 'Transaksi berhasil dicatat dan stok produk telah diperbarui.');
+        return redirect()->route('transactions.index')->with('success', __('Transaksi berhasil dicatat dan stok produk telah diperbarui.'));
     }
 
     /**
